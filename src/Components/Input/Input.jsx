@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTask } from '../../actions/actions';
+import { createTask } from '../../store/reducers/reducer';
 
 export const Input = () => {
     const [newTask, setNewTask] = useState('');
@@ -13,7 +13,7 @@ export const Input = () => {
 
     const clickHandler = (e) => {
         e.preventDefault();
-        if (newTask.length > 0) dispatch(addTask(newTask));
+        if (newTask.length > 0) dispatch(createTask(newTask));
     };
     return (
         <form>

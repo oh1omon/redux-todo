@@ -3,32 +3,12 @@
     {
       "id": 0,
       "task": "to do to do list",
-      "done": false
+      "done": true
     },
     {
       "id": 1,
       "task": "read a book",
       "done": true
-    },
-    {
-      "id": 2,
-      "task": "wqrqwr",
-      "done": false
-    },
-    {
-      "id": 3,
-      "task": "t24t2t2t",
-      "done": false
-    },
-    {
-      "id": 4,
-      "task": "t24t2t2t",
-      "done": false
-    },
-    {
-      "id": 5,
-      "task": "t24t2t2t",
-      "done": false
     }
   ]
 }

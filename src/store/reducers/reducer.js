@@ -1,20 +1,16 @@
-import * as actionTypes from '../actions/actions';
+import * as actionTypes from '../../actions';
 import axios from 'axios';
+import { getAll, createNew } from '../../services/listing';
 
 let initialState = [];
 
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SET_INITIAL_STATE: {
-            return [...action.db];
+            return action.data;
         }
         case actionTypes.ADD_TASK: {
-            let newTask = { id: state.length, task: action.task, done: false };
-            axios
-                .post('http://localhost:3001/tasks', newTask)
-                .then((resp) => console.log(resp))
-                .catch((err) => console.err(err));
-            return [...state, newTask];
+            return [...state, action.data];
         }
         case actionTypes.DO_TASK: {
             let taskToDo = state.find((task) => task.id === action.id);
@@ -28,4 +24,24 @@ export const reducer = (state = initialState, action) => {
         }
     }
     return state;
+};
+
+export const initializeTasks = () => {
+    return async (dispatch) => {
+        const listings = await getAll();
+        dispatch({
+            type: actionTypes.SET_INITIAL_STATE,
+            data: listings,
+        });
+    };
+};
+
+export const createTask = (content) => {
+    return async (dispatch) => {
+        const newTask = await createNew(content);
+        dispatch({
+            type: actionTypes.ADD_TASK,
+            data: newTask,
+        });
+    };
 };
