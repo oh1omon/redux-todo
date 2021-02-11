@@ -1,5 +1,4 @@
 import * as actionTypes from '../../actions';
-import axios from 'axios';
 import { getAll, createNew } from '../../services/listing';
 
 let initialState = [];
@@ -15,10 +14,10 @@ export const reducer = (state = initialState, action) => {
         case actionTypes.DO_TASK: {
             let taskToDo = state.find((task) => task.id === action.id);
             taskToDo.done = !taskToDo.done;
-            axios
-                .put(`http://localhost:3001/tasks/${action.id}`, taskToDo)
-                .then((resp) => console.log(resp))
-                .catch((err) => console.err(err));
+            // axios
+            //     .put(`http://localhost:3001/tasks/${action.id}`, taskToDo)
+            //     .then((resp) => console.log(resp))
+            //     .catch((err) => console.err(err));
             state.splice(taskToDo.id, 1, taskToDo);
             return [...state];
         }
